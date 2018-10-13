@@ -1,0 +1,30 @@
+{
+  "name": "object-doctor",
+  "version": "0.0.1",
+  "description": "JS Object Manipulation and Property Access",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brycejech/object-doctor.git"
+  },
+  "keywords": [
+    "object",
+    "nested",
+    "property",
+    "properties",
+    "get",
+    "safe",
+    "manipulate",
+    "manipulation",
+    "access"
+  ],
+  "author": "Bryce Jech",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brycejech/object-doctor/issues"
+  },
+  "homepage": "https://github.com/brycejech/object-doctor#readme"
+}
