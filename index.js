@@ -118,7 +118,7 @@
         return this;
     }
 
-    objectDoctor.Context = Context;
+    objectDoctor.Context = objectDoctor.Ctx = Context;
 
 
     /*
