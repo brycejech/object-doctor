@@ -6,15 +6,6 @@
 
     objectDoctor.get = function get(ctx, path, opt){
 
-        if(_type(ctx) === 'string'){
-            try{
-                ctx = JSON.parse(ctx);
-            }
-            catch(e){
-                throw new Error('Context string must be valid JSON');
-            }
-        }
-
         opt  = opt || {};
         path = _pathify(path, opt.delimiter);
 
