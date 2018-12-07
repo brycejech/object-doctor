@@ -2,9 +2,13 @@
   "name": "object-doctor",
   "version": "1.0.1",
   "description": "JS Object Manipulation and Property Access",
-  "main": "index.js",
+  "main": "object-doctor.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "build": "webpack",
+    "build/dev": "npm run build -- --mode development",
+    "build/prod": "npm run build -- --mode production",
+    "build/watch": "npm run build/dev -- --watch"
   },
   "repository": {
     "type": "git",
@@ -26,5 +30,13 @@
   "bugs": {
     "url": "https://github.com/brycejech/object-doctor/issues"
   },
-  "homepage": "https://github.com/brycejech/object-doctor#readme"
+  "homepage": "https://github.com/brycejech/object-doctor#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-loader": "^8.0.4",
+    "jest": "^23.6.0",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  }
 }
