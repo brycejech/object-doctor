@@ -1,9 +1,10 @@
 'use strict';
 
-function _pathify(path, delimiter){
+function _pathify(path, delimiter="."){
     if(_type(path) === 'array') return path;
-
-    delimiter = delimiter || '.';
+    if(_type(path) !== 'string'){
+        throw new Error('Invalid "path" argument, expected string or array');
+    }
 
     return path.split(delimiter);
 }
