@@ -97,12 +97,14 @@ function Context(ctx={}, opt={}){
 Context.prototype.get = function _get(path, opt={}){
     if(!path) return this.ctx;
 
+    // Merge opts to avoid clobbering existing instance opts
     opt = _merge(opt, this.opt);
 
     return get.apply(this, [this.ctx, path, opt]);
 }
 
 Context.prototype.set = function _set(path, val, opt={}){
+    // Merge opts to avoid clobbering existing instance optsclear
     opt = _merge(opt, this.opt);
 
     set.apply(this, [this.ctx, path, val, opt || this.opt]);
