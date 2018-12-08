@@ -1,6 +1,6 @@
 'use strict';
 
-import { _pathify, _isPrimitive, _type } from './utils'
+import { _pathify, _isPrimitive, _type, _merge } from './utils'
 
 
 function get(ctx, path, opt={}){
@@ -78,7 +78,7 @@ function set(ctx={}, path, val, opt={}){
 
 const Ctx = Context; // Alias
 
-function Context(ctx, opt){
+function Context(ctx={}, opt={}){
 
     if(_type(ctx) === 'string'){
         try{
@@ -88,20 +88,22 @@ function Context(ctx, opt){
             throw new Error('Context string must be valid JSON')
         }
     }
-    this.ctx = ctx || {};
+    this.ctx = ctx;
     this.opt = opt;
 
     return this;
 }
 
-Context.prototype.get = function _get(path, opt){
+Context.prototype.get = function _get(path, opt={}){
     if(!path) return this.ctx;
 
-    return get.apply(this, [this.ctx, path, opt || this.opt]);
+    opt = _merge(opt, this.opt);
+
+    return get.apply(this, [this.ctx, path, opt]);
 }
 
-Context.prototype.set = function _set(path, val, opt){
-    opt = opt || this.opt || {};
+Context.prototype.set = function _set(path, val, opt={}){
+    opt = _merge(opt, this.opt);
 
     set.apply(this, [this.ctx, path, val, opt || this.opt]);
 
