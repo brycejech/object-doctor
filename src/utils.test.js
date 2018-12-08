@@ -1,6 +1,6 @@
 'use strict';
 
-import { _pathify, _isPrimitive, _type } from './utils';
+import { _pathify, _isPrimitive, _type, _merge } from './utils';
 
 const primitives = [
     1,
@@ -99,7 +99,7 @@ describe('_type should identify all types', () => {
     test('When given a float', () => {
         expect(_type(3.141)).toBe('number');
     });
-    
+
     test('When given NaN', () => {
         expect(_type(NaN)).toBe('number');
     });
@@ -120,4 +120,21 @@ describe('_type should identify all types', () => {
         expect(_type(null)).toBe('null');
     });
 
+});
+
+describe('_merge should merge two objects', () => {
+    test('When given two objects', () => {
+        const a = {a: 'foo', b: 'bar', c: 'baz'},
+              b = {d: 'spam'};
+
+        expect(_merge(a,b)).toEqual({a:'foo',b:'bar',c:'baz',d:'spam'});
+    });
+
+    test('Should throw if args are not objects', () => {
+        expect(() => _merge([], 'foo')).toThrow();
+    });
+
+    test('Should throw if any arg is not an object', () => {
+        expect(() => _merge([], {a:'foo'})).toThrow();
+    });
 });
