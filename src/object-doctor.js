@@ -94,16 +94,16 @@ function Context(ctx, opt){
     return this;
 }
 
-Context.prototype.get = function get(path, opt){
+Context.prototype.get = function _get(path, opt){
     if(!path) return this.ctx;
 
-    return objectDoctor.get.apply(this, [this.ctx, path, opt]);
+    return get.apply(this, [this.ctx, path, opt || this.opt]);
 }
 
-Context.prototype.set = function set(path, val, opt){
+Context.prototype.set = function _set(path, val, opt){
     opt = opt || this.opt || {};
 
-    objectDoctor.set.apply(this, [this.ctx, path, val, opt]);
+    set.apply(this, [this.ctx, path, val, opt || this.opt]);
 
     return this;
 }
