@@ -3,9 +3,8 @@
 import { _pathify, _isPrimitive, _type } from './utils'
 
 
-function get(ctx, path, opt){
+function get(ctx, path, opt={}){
 
-    opt  = opt || {};
     path = _pathify(path, opt.delimiter);
 
     if(path.length > 1){
@@ -25,11 +24,7 @@ function get(ctx, path, opt){
     }
 }
 
-function set(ctx, path, val, opt){
-    // TODO: Return full ctx object instead of last piece touched
-    // This will be a breaking change
-    ctx  = ctx || {};
-    opt  = opt || {};
+function set(ctx={}, path, val, opt={}){
     path = _pathify(path, opt.delimiter);
 
     if(path.length > 1){
@@ -41,23 +36,20 @@ function set(ctx, path, val, opt){
             if(_isPrimitive(ctx[next])){
                 if(opt.force){
                     ctx[next] = {};
-                    return set(ctx[next], path, val, opt);
-                    // set(ctx[next], path, val, opt);
+                    set(ctx[next], path, val, opt);
                 }
                 else{
                     return ctx;
                 }
             }
             else{
-                return set(ctx[next], path, val, opt);
-                // set(ctx[next], path, val, opt);
+                set(ctx[next], path, val, opt);
             }
 
         }
         else{
             ctx[next] = {};
-            return set(ctx[next], path, val, opt);
-            // set(ctx[next], path, val, opt);
+            set(ctx[next], path, val, opt);
         }
     }
     else{
@@ -74,8 +66,7 @@ function set(ctx, path, val, opt){
             return ctx;
         }
     }
-
-    // return ctx;
+    return ctx;
 }
 
 
