@@ -2,7 +2,7 @@
   "name": "object-doctor",
   "version": "2.0.1",
   "description": "JS Object Manipulation and Property Access",
-  "main": "object-doctor.min.js",
+  "main": "dist/object-doctor.min.js",
   "scripts": {
     "test": "jest --verbose",
     "build": "webpack",
